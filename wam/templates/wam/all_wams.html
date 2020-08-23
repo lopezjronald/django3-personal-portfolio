@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Portfolio</title>
+</head>
+<body>
+    <h1>Weekly Accountability Meetings</h1>
+    <h3>Recorded {{ wams.count }} WAM Session{{ wams.count|pluralize }}</h3>
+    {% for wam in wams %}
+        <a href="{% url 'wam:detail' wam.id %}"><h2>{{  wam.theme }}</h2></a>
+        <p>{{ wam.description|truncatechars:50}}</p>
+        <br>
+        <img src="{{ wam.image.url }}" height="250px" width="auto">
+    {% if project.url %}
+        <br>
+        <a href="{{ wam.url }}">Link</a>
+    {% endif %}
+
+    {% endfor %}
+
+</body>
+</html>
